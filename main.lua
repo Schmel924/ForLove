@@ -1,7 +1,9 @@
 io.stdout:setvbuf("no") -- for live console output
 Object = require("libs/classic")
 Input = require ('libs/input')
+Timer = require ('libs/hump-master/timer')
 require ('./utils')
+
 
 
 -- Libs and Objs requirement
@@ -22,24 +24,23 @@ end
 function requireFiles(files)
     for _, file in ipairs(files) do
         local file = file:sub(1, -5)
+        print (file)
         require(file)
     end
 end
 
 function love.load()
 	-- Libs and Objs requirement
+ --[[   local lib_files = {}
+    recursiveEnumerate('libs', lib_files)
+    requireFiles(lib_files)]]
 	local object_files = {}
     recursiveEnumerate('objects', object_files)
 	requireFiles(object_files)
-	local lib_files = {}
-    recursiveEnumerate('libs', lib_files)
-	requireFiles(lib_files)
-	
+
+	love.graphics.setColor(0, 0.5, 0.5, 0.4)
 	current_room = nil
-	input = Input()
-    input:bind('f1', function() gotoRoom('CircleRoom') end)
-    input:bind('f2', function() gotoRoom('RectRoom') end)
-    input:bind('f3', function() gotoRoom('PolygonRoom') end)
+	gotoRoom('CircleRoom')
 end
 
 function love.update(dt)
