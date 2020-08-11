@@ -1,6 +1,7 @@
 io.stdout:setvbuf("no") -- for live console output
 Object = require("libs/classic")
 Input = require ('libs/input')
+require ('./utils')
 
 
 -- Libs and Objs requirement
