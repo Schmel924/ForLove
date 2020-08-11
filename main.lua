@@ -33,22 +33,21 @@ function love.load()
 	local lib_files = {}
     recursiveEnumerate('libs', lib_files)
 	requireFiles(lib_files)
-
+	
 	current_room = nil
 	input = Input()
-    input:bind('mouse1', 'test')
+    input:bind('f1', function() gotoRoom('CircleRoom') end)
+    input:bind('f2', function() gotoRoom('RectRoom') end)
+    input:bind('f3', function() gotoRoom('PolygonRoom') end)
 end
 
 function love.update(dt)
     if current_room then current_room:update(dt) end
-    if input:pressed('test') then print('pressed') end
-    if input:released('test') then print('released') end
-    if input:down('test') then print('down') end
+    
 end
 
 function love.draw()
 	if current_room then current_room:draw() end
-	
 end
 
 function gotoRoom(room_type, ...)
