@@ -11,5 +11,5 @@ function CircleRoom:update(dt)
 end
 
 function CircleRoom:draw()
- love.graphics.Circle('line', 150, 150, 50)
+ love.graphics.circle('line', 150, 150, 50)
 end
