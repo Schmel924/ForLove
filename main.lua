@@ -1,5 +1,6 @@
 io.stdout:setvbuf("no") -- for live console output
 Object = require("libs/classic")
+Input = require ('libs/input')
 
 
 -- Libs and Objs requirement
@@ -34,16 +35,20 @@ function love.load()
 	requireFiles(lib_files)
 
 	current_room = nil
-	newC = Circle (150,150,10)
+	input = Input()
+    input:bind('mouse1', 'test')
 end
 
 function love.update(dt)
     if current_room then current_room:update(dt) end
+    if input:pressed('test') then print('pressed') end
+    if input:released('test') then print('released') end
+    if input:down('test') then print('down') end
 end
 
 function love.draw()
 	if current_room then current_room:draw() end
-	newC:draw()
+	
 end
 
 function gotoRoom(room_type, ...)
