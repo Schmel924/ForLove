@@ -1,0 +1,7 @@
+# Specify filepatterns you want git to ignore.
+
+*.png
+*.ogg
+*.yml
+libs/hump-master/docs/*
+*.TTF
