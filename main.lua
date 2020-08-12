@@ -1,13 +1,15 @@
 require ('./utils')
 
 function love.load()
+	input = Input()
+	input:bind('d', 'removeRectangle')
 	local object_files = {}
     recursiveEnumerate('objects', object_files)
 	requireFiles(object_files)
 
 	love.graphics.setColor(0, 0.5, 0.5, 0.4)
 	current_room = nil
-	gotoRoom('CircleRoom')
+	gotoRoom('RectRoom')
 end
 
 function love.update(dt)
