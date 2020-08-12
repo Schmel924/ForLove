@@ -4,7 +4,10 @@ Input = require ('libs/input')
 Timer = require ('libs/hump-master/timer')
 require ('./utils')
 
-
+function love.filesystem.isFile (f)
+	i=love.filesystem.getInfo(f)
+	if i.type == 'file' then return true else return false end
+end
 
 -- Libs and Objs requirement
 function recursiveEnumerate(folder, file_list)
@@ -24,7 +27,6 @@ end
 function requireFiles(files)
     for _, file in ipairs(files) do
         local file = file:sub(1, -5)
-        print (file)
         require(file)
     end
 end
