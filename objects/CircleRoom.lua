@@ -3,11 +3,9 @@
 CircleRoom = Object:extend()
 
 function CircleRoom:new()
-	self.area = Area()
+	self.area = Area(self)
+    self.main_canvas = love.graphics.newCanvas(gw, gh)
 	self.timer = Timer()
-	self.timer:every(1, function()
-        self.area:addGameObject('Circle', random(0, 800), random(0, 600))
-    end)
 end
 
 function CircleRoom:update(dt)
@@ -16,5 +14,15 @@ function CircleRoom:update(dt)
 end
 
 function CircleRoom:draw()
- 	self.area:draw()
+ 	love.graphics.setCanvas(self.main_canvas)
+    love.graphics.clear()
+    love.graphics.circle('line', gw/2, gh/2, 50)
+    self.area:draw()
+    love.graphics.setCanvas()
+	
+	love.graphics.setColor(255, 255, 255, 255)
+    love.graphics.setBlendMode('alpha', 'premultiplied')
+    love.graphics.draw(self.main_canvas, 0, 0, 0, sx, sy)
+    love.graphics.setBlendMode('alpha')
+
 end

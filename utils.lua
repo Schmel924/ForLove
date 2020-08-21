@@ -43,3 +43,8 @@ function requireFiles(files)
         require(file)
     end
 end
+
+function resize(s)
+    love.window.setMode(s*gw, s*gh) 
+    sx, sy = s, s
+end
